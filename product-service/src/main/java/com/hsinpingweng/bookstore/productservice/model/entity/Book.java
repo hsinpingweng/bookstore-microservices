@@ -28,8 +28,8 @@ public class Book {
     @Size(max=1000, message="Description should have at most 1000 characters")
     private String description;
 
-    @Pattern(regexp = "^[0-9]+([.][0-9]{1,2})?",  message = "Expected format: 5, 5.99, 25, 25.99")
-    private String price;
+    @NotNull(message = "Price may not be null")
+    private double price;
 
 
     @NotNull(message = "publishedDate may not be null (Format: dd-MM-yyyy)")
