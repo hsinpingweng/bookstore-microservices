@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
@@ -15,7 +16,7 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Size(min=10, max=13, message="Name should have between 10 to 13 characters")
+    @Size(min=10, max=13, message="ISBN should have between 10 to 13 characters")
     private String isbn;
 
     @Size(min=1, max=100, message="Name should have 1 to 100 characters")
@@ -24,6 +25,9 @@ public class Book {
 
     @Size(max=1000, message="Description should have at most 1000 characters")
     private String description;
+
+    @Pattern(regexp = "^[0-9]+([.][0-9]{1,2})?",  message = "Expected format: 5, 5.99, 25, 25.99")
+    private String price;
 
 
     @NotNull(message = "publishedDate may not be null (Format: dd-MM-yyyy)")
